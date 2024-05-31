@@ -1,7 +1,11 @@
-const myNotes = [
-    "Hello,today is Thursday",
-    "I'm having a good day"
-]
+// get notes from local storage and assign them to storedNotes
+const storedNotes = localStorage.getItem('notes');
+
+// create a separator to split the notes
+const separator = '##endOfNote##'; 
+
+//  split the notes using the separator and assign them to myNotes or assign an empty array if there are no notes
+const myNotes =  storedNotes ? storedNotes.split(separator) : []; 
 
 //  assign notesArray to the div element where notes will be displayed
 const notesArray = document.getElementById('notes-list');
@@ -36,9 +40,11 @@ function saveNote(){
     const noteContent = document.getElementById('note-content').value;
     // check if the note is not empty
     if(noteContent.trim() !== ''){
-        // add the note to the array
-        myNotes.push(noteContent); 
-        alert('Note added successfully');
+        // add the note to the array        
+        myNotes.push(noteContent);
+        // save the note to local storage
+        localStorage.setItem('notes', JSON.stringify(myNotes.join()));
+        // alert('Note added successfully');
         // clear the input field
         document.getElementById('note-content').value = '';
         // close the modal when cancel button is clicked
@@ -52,3 +58,9 @@ function saveNote(){
 }
 // display existing notes
 displayNotes();
+  // add event listener for the 'Enter' key press
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        saveNote();
+    }
+});
