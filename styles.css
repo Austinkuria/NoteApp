@@ -1,5 +1,21 @@
 .btns-group {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(2, 1fr); /* Create two columns */
+    gap: 1.5rem; /* Add some space between the buttons */
+    white-space: nowrap; /* Prevent text wrapping inside buttons */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+ /* Media query for small screens */
+@media (max-width: 576px) {
+    .btn {
+        font-size: 0.75rem; /* Reduce font size for small screens */
+        padding: 0.25rem 0.5rem; /* Adjust padding for small screens */
+    }
+}
+
+.card-text {
+    white-space: nowrap; /* Prevent the text from wrapping */
+    overflow: hidden;    /* Hide the overflowed text */
+    text-overflow: ellipsis; /* Add ellipsis (...) at the end of the text */
 }
