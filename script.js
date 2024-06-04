@@ -10,6 +10,9 @@ const myNotes =  storedNotes ? storedNotes.split(separator) : [];
 //  assign notesArray to the div element where notes will be displayed
 const notesArray = document.getElementById('notes-list');
 
+// variable to store the index of the note being edited
+let editIndex = -1;
+
 // function to display notes
 function displayNotes(){
     // clear existing notes
@@ -78,8 +81,16 @@ function saveNote(){
     const noteContent = document.getElementById('note-content').value;
     // check if the note is not empty
     if(noteContent.trim() !== ''){
-        // add the note to the array        
-        myNotes.push(noteContent);
+         // if index is not -1, it means we're editing an existing note
+        if (editIndex !== -1) {
+            // update the existing note
+            myNotes[editIndex] = noteContent;
+            // reset editIndex
+            editIndex = -1;
+        } else {
+            // add the new note to the array
+            myNotes.push(noteContent);
+        }
         // save the note to local storage
         localStorage.setItem('notes', myNotes.join(separator));
         // alert('Note added successfully');
@@ -99,7 +110,7 @@ displayNotes();
   // add event listener for the 'Enter' key press
 document.addEventListener('keydown', function(event) {
     // check if the key pressed is 'Enter'
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && event.target.id !== 'note-content') {
         saveNote();
     }
 });
@@ -116,6 +127,8 @@ function deleteSingleNoteCardContent(index) {
 
 // function to edit a note
 function editSingleNoteCardContent(index){
+    // set the edit index
+    editIndex = index;
     // get the note content
     document.getElementById('note-content').value = myNotes[index];
     // display the modal
