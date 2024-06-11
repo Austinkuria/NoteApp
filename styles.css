@@ -1,9 +1,14 @@
 .btns-group {
-    display: grid; /* Use grid layout */
-    grid-template-columns: repeat(2, 1fr); /* Create two columns */
-    gap: 1.5rem; /* Add some space between the buttons */
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap onto multiple lines if needed */
+    gap: 0.5rem; /* Add space between buttons */
     white-space: nowrap; /* Prevent text wrapping inside buttons */
-    flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.card-text {
+    white-space: nowrap; /* Prevent the text from wrapping */
+    overflow: hidden; /* Hide the overflowed text */
+    text-overflow: ellipsis; /* Add ellipsis (...) at the end of the text */
 }
 
  /* Media query for small screens */
@@ -12,8 +17,25 @@
         font-size: 0.75rem; /* Reduce font size for small screens */
         padding: 0.25rem 0.5rem; /* Adjust padding for small screens */
     }
+    .card-body-buttons {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        gap: 0.5rem; /* Add space between buttons */
+    }
+
+    .card-text {
+        white-space: normal; /* Allow text to wrap */
+        overflow: visible; /* Show all text */
+        text-overflow: clip; /* Do not clip text */
+    }
 }
 
+/* Ensure modal buttons are contained within the modal */
+.modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
 .card-text {
     white-space: nowrap; /* Prevent the text from wrapping */
     overflow: hidden;    /* Hide the overflowed text */
