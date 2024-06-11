@@ -96,8 +96,9 @@ function saveNote(){
         // alert('Note added successfully');
         // clear the input field
         document.getElementById('note-content').value = '';
-        // close the modal when cancel button is clicked
-        document.getElementById('cancel-button').click();
+        // hide the modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('newNoteModal'));
+        modal.hide();
         // display the new note
         displayNotes();
     }
