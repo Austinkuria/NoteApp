@@ -61,3 +61,7 @@ Ensure you have the following installed:
 - **HTML:** The main structure of the application, including the modal for adding/editing notes and the section to display notes.
 - **CSS:** Custom styles for the application to ensure responsive and clean UI.
 - **JavaScript:** Handles the logic for adding, editing, deleting, and marking notes as completed. Interacts with local storage to persist notes.
+
+### Contributing
+
+Feel free to fork this repository and submit pull requests. Contributions are welcome!
